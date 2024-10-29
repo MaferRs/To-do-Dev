@@ -18,5 +18,7 @@ export const styles = StyleSheet.create({
     fontWeight: '800',
   },
   image: { width: 200, height: 200 },
-  form: { width: '100%' },
+  form: { width: '100%', gap: 24 },
+  errorText: { color: 'red', fontSize: 10, paddingLeft: 18, paddingBottom: 10 },
+  text: { fontWeight: '600', fontSize: 16 },
 });

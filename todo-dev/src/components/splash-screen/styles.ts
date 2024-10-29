@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    fontWeight: '600',
     color: '#314D3A',
     textAlign: 'center',
     paddingBottom: 50,
