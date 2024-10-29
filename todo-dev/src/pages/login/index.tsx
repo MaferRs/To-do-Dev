@@ -11,8 +11,7 @@ export default function Login() {
   const [senha, setSenha] = useState<string>('');
 
   const handleLogin = () => {
-    console.log('Email:', email);
-    console.log('Senha:', senha);
+    alert('Email realizado');
   };
 
   return (
@@ -35,7 +34,7 @@ export default function Login() {
         />
       </View>
       <View>
-        <CustomButton>Entrar</CustomButton>
+        <CustomButton onPress={handleLogin}>Entrar</CustomButton>
       </View>
       <View>
         <Text>Não tem uma conta? Cadastre-se</Text>
