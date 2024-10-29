@@ -10,9 +10,10 @@ export const styles = StyleSheet.create({
   },
   input: {
     width: 350,
-    height: 48,
+    height: 50,
     backgroundColor: '#EDEDED',
     borderRadius: 20,
     paddingLeft: 20,
+    fontSize: 16,
   },
 });
