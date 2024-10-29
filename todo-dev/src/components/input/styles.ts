@@ -11,5 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#EDEDED',
     fontSize: 16,
     fontWeight: '600',
+    paddingLeft: 20,
+    borderRadius: 20,
   },
 });
