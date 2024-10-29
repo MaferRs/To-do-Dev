@@ -4,6 +4,9 @@ import Login from './src/pages/login';
 import SplashScreen from './src/components/splash-screen/splash-screen';
 import { useState } from 'react';
 import Register from './src/pages/register';
+import './gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/routes/index.routes';
 
 export default function App() {
   const [isSplashVisible, setIsSplashVisible] = useState(true);
@@ -13,16 +16,15 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* <StatusBar style="auto" />
+    <NavigationContainer>
       {isSplashVisible ? (
+        // Exibindo o SplashScreen enquanto isSplashVisible for verdadeiro
         <SplashScreen onSplashEnd={handleSplashEnd} />
       ) : (
-        <Login />
-      )} */}
-
-      <Register />
-    </View>
+        // Exibindo as rotas depois do fim do SplashScreen
+        <Routes />
+      )}
+    </NavigationContainer>
   );
 }
 
