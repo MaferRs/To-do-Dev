@@ -8,17 +8,17 @@ import CustomButton from '../../components/button/custom-button';
 
 export default function Login() {
   const [email, setEmail] = useState<string>('');
-  const [senha, setSenha] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [emailError, setEmailError] = useState<string | null>(null);
-  const [senhaError, setSenhaError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const validatePassword = (senha: string): boolean => {
-    return senha.length >= 6;
+  const validatePassword = (password: string): boolean => {
+    return password.length >= 6;
   };
 
   const handleLogin = () => {
@@ -32,19 +32,19 @@ export default function Login() {
       setEmailError(null);
     }
 
-    // Validação de senha
-    if (!validatePassword(senha)) {
-      setSenhaError('A senha deve ter pelo menos 6 caracteres.');
+    // Validação de password
+    if (!validatePassword(password)) {
+      setPasswordError('A password deve ter pelo menos 6 caracteres.');
       valid = false;
     } else {
-      setSenhaError(null);
+      setPasswordError(null);
     }
 
     // Se ambos os campos são válidos, efetua o login e limpa os campos
     if (valid) {
       Alert.alert('Sucesso', 'Login efetuado');
       setEmail('');
-      setSenha('');
+      setPassword('');
     }
   };
   return (
@@ -61,12 +61,12 @@ export default function Login() {
         />
         {emailError && <Text style={styles.errorText}>{emailError}</Text>}
         <CustomInput
-          value={senha}
-          onChangeText={setSenha}
-          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          placeholder="password"
           secureTextEntry
         />
-        {senhaError && <Text style={styles.errorText}>{senhaError}</Text>}
+        {passwordError && <Text style={styles.errorText}>{passwordError}</Text>}
       </View>
       <View>
         <CustomButton onPress={handleLogin}>Entrar</CustomButton>
