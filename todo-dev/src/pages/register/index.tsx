@@ -7,14 +7,25 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 import { styles } from './styles';
 
 import imageRegister from '../../assets/register.png';
 import CustomInput from '../../components/input/custom-input';
 import CustomButton from '../../components/button/custom-button';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import {
+  RegisterScreenNavigationProp,
+  RootStackParamList,
+} from '../../@types/navigation';
+
+type RegisterScreenProp = StackNavigationProp<RootStackParamList, 'Register'>;
 
 export default function Register() {
+  const navigation = useNavigation<RegisterScreenNavigationProp>();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -84,8 +95,17 @@ export default function Register() {
     }
   };
 
+  // Função para navegar para a tela de login
+  const navigateToLogin = () => {
+    navigation.navigate('Login');
+  };
+
   return (
-    <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      behavior="height"
+      style={{ flex: 1 }}
+      keyboardVerticalOffset={100}
+    >
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
@@ -130,8 +150,11 @@ export default function Register() {
           <CustomButton onPress={handleRegister}>Criar Conta</CustomButton>
         </View>
 
-        <View>
-          <Text style={styles.text}>Já tem uma conta? Faça login</Text>
+        <View style={styles.containerText}>
+          <Text style={styles.text}>Já tem uma conta?</Text>
+          <TouchableOpacity onPress={navigateToLogin}>
+            <Text style={styles.buttonNavigate}> Faça login</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
