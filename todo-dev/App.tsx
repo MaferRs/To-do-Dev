@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/pages/login';
 import SplashScreen from './src/components/splash-screen/splash-screen';
 import { useState } from 'react';
+import Register from './src/pages/register';
 
 export default function App() {
   const [isSplashVisible, setIsSplashVisible] = useState(true);
@@ -13,12 +14,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" />
       {isSplashVisible ? (
         <SplashScreen onSplashEnd={handleSplashEnd} />
       ) : (
         <Login />
-      )}
+      )} */}
+
+      <Register />
     </View>
   );
 }
