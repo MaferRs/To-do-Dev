@@ -6,14 +6,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    gap: 40,
+    gap: 30,
   },
-  imageLogin: {
+  imageRegister: {
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
   },
-  loginText: {
+  registerText: {
     color: '#314D3A',
     fontSize: 40,
     fontWeight: '800',
@@ -27,16 +27,16 @@ export const styles = StyleSheet.create({
   form: {
     width: '100%',
     maxWidth: 400,
-    gap: 24,
+    gap: 10,
     alignItems: 'center',
   },
   errorText: {
     color: 'red',
-    fontSize: 10,
+    fontSize: 12,
     paddingLeft: 18,
-    paddingBottom: 10,
     textAlign: 'left',
     width: '100%',
+    marginBottom: 10,
   },
   containerText: { alignItems: 'center' },
   text: {

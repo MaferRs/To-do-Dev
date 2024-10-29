@@ -9,9 +9,9 @@ export const styles = StyleSheet.create({
     width: 350,
     height: 50,
     backgroundColor: '#EDEDED',
-    borderRadius: 20,
-    paddingLeft: 20,
     fontSize: 16,
     fontWeight: '600',
+    paddingLeft: 20,
+    borderRadius: 20,
   },
 });
