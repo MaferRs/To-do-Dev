@@ -20,7 +20,7 @@ export default function CustomInput({
   ...props
 }: Props) {
   return (
-    <View style={styles.container}>
+    <View>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         style={styles.input}

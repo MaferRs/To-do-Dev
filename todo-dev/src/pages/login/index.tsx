@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, Text, TextInput } from 'react-native';
+import { View, Image, Text, Alert } from 'react-native';
 import { styles } from './styles';
 
 import imageLogin from '../../assets/login.png';
@@ -9,11 +9,44 @@ import CustomButton from '../../components/button/custom-button';
 export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [senha, setSenha] = useState<string>('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [senhaError, setSenhaError] = useState<string | null>(null);
 
-  const handleLogin = () => {
-    alert('Email realizado');
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
+  const validatePassword = (senha: string): boolean => {
+    return senha.length >= 6;
+  };
+
+  const handleLogin = () => {
+    let valid = true;
+
+    // Validação de e-mail
+    if (!validateEmail(email)) {
+      setEmailError('Por favor, insira um e-mail válido.');
+      valid = false;
+    } else {
+      setEmailError(null);
+    }
+
+    // Validação de senha
+    if (!validatePassword(senha)) {
+      setSenhaError('A senha deve ter pelo menos 6 caracteres.');
+      valid = false;
+    } else {
+      setSenhaError(null);
+    }
+
+    // Se ambos os campos são válidos, efetua o login e limpa os campos
+    if (valid) {
+      Alert.alert('Sucesso', 'Login efetuado');
+      setEmail('');
+      setSenha('');
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.imageLogin}>
@@ -26,18 +59,20 @@ export default function Login() {
           onChangeText={setEmail}
           placeholder="E-mail"
         />
+        {emailError && <Text style={styles.errorText}>{emailError}</Text>}
         <CustomInput
           value={senha}
           onChangeText={setSenha}
           placeholder="Senha"
           secureTextEntry
         />
+        {senhaError && <Text style={styles.errorText}>{senhaError}</Text>}
       </View>
       <View>
         <CustomButton onPress={handleLogin}>Entrar</CustomButton>
       </View>
       <View>
-        <Text>Não tem uma conta? Cadastre-se</Text>
+        <Text style={styles.text}>Não tem uma conta? Cadastre-se</Text>
       </View>
     </View>
   );
