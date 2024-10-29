@@ -1,12 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/pages/login';
+import SplashScreen from './src/components/splash-screen/splash-screen';
+import { useState } from 'react';
 
 export default function App() {
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+
+  const handleSplashEnd = () => {
+    setIsSplashVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Login />
+      {isSplashVisible ? (
+        <SplashScreen onSplashEnd={handleSplashEnd} />
+      ) : (
+        <Login />
+      )}
     </View>
   );
 }
