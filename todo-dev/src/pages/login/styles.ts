@@ -19,5 +19,4 @@ export const styles = StyleSheet.create({
   },
   image: { width: 200, height: 200 },
   form: { width: '100%' },
-  button: {},
 });

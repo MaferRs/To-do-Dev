@@ -34,7 +34,7 @@ export default function Login() {
           secureTextEntry
         />
       </View>
-      <View style={styles.button}>
+      <View>
         <CustomButton>Entrar</CustomButton>
       </View>
       <View>
