@@ -1,10 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../pages/login';
-// import Register from '../pages/register';
 import { RootStackParamList } from '../@types/navigation';
-import List from '../pages/list';
+import Login from '../pages/login';
 import Register from '../pages/register';
+import Todo from '../pages/todo';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -19,6 +18,7 @@ export default function Routes() {
     >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="Todo" component={Todo} />
     </Stack.Navigator>
   );
 }
