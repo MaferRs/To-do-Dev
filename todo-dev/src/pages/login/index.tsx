@@ -55,6 +55,7 @@ export default function Login() {
     // Se ambos os campos são válidos, efetua o login e limpa os campos
     if (valid) {
       Alert.alert('Sucesso', 'Login efetuado');
+      navigation.navigate('Todo');
       setEmail('');
       setPassword('');
     }
