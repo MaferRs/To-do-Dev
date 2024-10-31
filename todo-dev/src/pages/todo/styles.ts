@@ -29,23 +29,54 @@ export const styles = StyleSheet.create({
   footer: {
     width: '100%',
     height: 80,
-    paddingVertical: 20,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#ADCEB7',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 120,
+    position: 'relative',
+  },
+  createTask: {
+    width: 75,
+    height: 75,
+    backgroundColor: '#BAE0BD',
+    borderRadius: 50,
+    borderColor: '#65A17C',
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: -40,
+    right: 30,
+  },
+  deleteTask: {
+    width: 75,
+    height: 75,
+    backgroundColor: '#BAE0BD',
+    borderRadius: 50,
+    borderColor: '#65A17C',
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: -40,
+    left: 40,
+  },
+  image: {
+    width: 45,
+    height: 45,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  footerText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-  },
-
   // Estilos dos Itens da Lista de Tarefas
   taskItem: {
+    maxWidth: 320,
+    width: '100%',
     padding: 15,
-    backgroundColor: '#e0e0e0',
+    borderColor: '#e0e0e0',
+    borderWidth: 2,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   taskTitle: {
     fontSize: 16,
@@ -102,13 +133,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   selectedTaskItem: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#EDEDED',
   },
 
   // Estilos para o Checkbox
   checkbox: {
-    width: 20,
-    height: 20,
+    width: 25,
+    height: 25,
     borderRadius: 30,
     borderWidth: 2,
     borderColor: 'gray',
@@ -117,8 +148,6 @@ export const styles = StyleSheet.create({
   },
   checked: {
     color: 'green',
-    width: 20,
-    height: 20,
   },
   unchecked: {
     color: 'transparent',
