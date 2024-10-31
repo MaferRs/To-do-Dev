@@ -93,7 +93,9 @@ export default function Login() {
           )}
         </View>
         <View>
-          <CustomButton onPress={handleLogin}>Entrar</CustomButton>
+          <CustomButton onPress={handleLogin}>
+            <Text>Entrar</Text>
+          </CustomButton>
         </View>
         <View style={styles.containerText}>
           <Text style={styles.text}>Não tem uma conta?</Text>
