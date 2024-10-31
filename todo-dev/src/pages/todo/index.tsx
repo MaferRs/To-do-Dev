@@ -9,7 +9,12 @@ import {
   View,
   Text,
   Button,
+  Image,
 } from 'react-native';
+import CustomButton from '../../components/button/custom-button';
+
+import binIcon from '../../assets/binIcon.png';
+import addIcon from '../../assets/addIcon.png';
 
 interface Task {
   id: number;
@@ -94,7 +99,7 @@ export default function Todo() {
                   ]}
                 >
                   {selectedTaskIds.includes(task.id) && (
-                    <Text style={styles.checked}>✓</Text> // Exibe o checkmark se selecionado
+                    <Text style={styles.checked}>🔴</Text> // Exibe o checkmark se selecionado
                   )}
                 </View>
               </TouchableOpacity>
@@ -104,8 +109,15 @@ export default function Todo() {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Button title="Criar Tarefa" onPress={() => setModalVisible(true)} />
-        <Button title="Excluir Tarefa" onPress={openDeleteModal} />
+        <CustomButton style={styles.deleteTask} onPress={openDeleteModal}>
+          <Image style={styles.image} source={binIcon} />
+        </CustomButton>
+        <CustomButton
+          style={styles.createTask}
+          onPress={() => setModalVisible(true)}
+        >
+          <Image style={styles.image} source={addIcon} />
+        </CustomButton>
       </View>
 
       {/* Modal para Criar Tarefa */}
@@ -151,8 +163,9 @@ export default function Todo() {
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Excluir Tarefas</Text>
             <Text style={styles.warningText}>
-              Essa ação não pode ser desfeita. Deseja excluir as tarefas
-              selecionadas?
+              Tem certeza que deseja excluir esta(s) tarefa(s), esta ação não
+              poderá ser desfeita. Após clicar em excluir suas tarefas serão
+              completamente excluídas da sua lista.
             </Text>
             <View style={styles.modalButtons}>
               <Button title="Excluir" onPress={handleDeleteTasks} />
