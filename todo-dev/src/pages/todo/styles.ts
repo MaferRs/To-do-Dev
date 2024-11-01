@@ -3,9 +3,9 @@ export const styles = StyleSheet.create({
   // Estilos para o Container Todo
   containerTodo: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    padding: 20,
   },
+
   contentTodo: {
     paddingBottom: 20,
   },
@@ -16,13 +16,14 @@ export const styles = StyleSheet.create({
     height: 150,
     paddingVertical: 20,
     backgroundColor: '#ADCEB7',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#FFF',
+    paddingLeft: 20,
   },
 
   // Estilos para o Rodapé
@@ -88,42 +89,85 @@ export const styles = StyleSheet.create({
     color: '#666',
   },
 
-  // Estilos para o Modal de Criação/Exclusão de Tarefa
+  //Modal
+
   modalContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backgroundModal: {
+    width: 350,
+    height: 430,
+    justifyContent: 'center',
+    gap: 10,
+    backgroundColor: '#ADCEB7',
+    borderRadius: 20,
+    padding: 30,
   },
   modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 32,
+    fontWeight: '800',
     marginBottom: 15,
-    color: '#333',
+    color: '#314D3A',
   },
   input: {
-    borderColor: '#ccc',
-    borderWidth: 1,
+    backgroundColor: '#FFFFFF80',
     padding: 10,
     marginVertical: 10,
-    borderRadius: 5,
+    borderRadius: 20,
+  },
+  inputDescription: {
+    backgroundColor: '#FFFFFF80',
+    padding: 10,
+    borderRadius: 20,
     fontSize: 16,
+    height: 100,
   },
   modalButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
   },
+  modalButtonCancel: {
+    width: 120,
+    height: 38,
+    backgroundColor: '#DC0104',
+    color: '#000',
+    fontWeight: '800',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+  },
+  modalButtonCreate: {
+    width: 120,
+    height: 38,
+    backgroundColor: '#65A17C',
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+  },
+  textButton: { color: '#000', fontWeight: '800', fontSize: 16 },
+
+  modalTitleDelete: {
+    fontSize: 32,
+    fontWeight: '800',
+    marginBottom: 15,
+    color: '#314D3A',
+    textAlign: 'center',
+  },
   warningText: {
-    color: 'red',
-    marginVertical: 10,
-    fontSize: 14,
-    fontWeight: '600',
+    color: '#000',
+    fontSize: 18,
+    fontWeight: '700',
   },
 
   // Estilos para o Container dos Itens da Tarefa
