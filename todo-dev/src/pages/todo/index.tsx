@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Button,
   Image,
+  Platform,
 } from 'react-native';
 import CustomButton from '../../components/button/custom-button';
 
 import binIcon from '../../assets/binIcon.png';
 import addIcon from '../../assets/addIcon.png';
+import CustomInput from '../../components/input/custom-input';
 
 interface Task {
   id: number;
@@ -68,7 +69,6 @@ export default function Todo() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Bem Vinda, Ana F.</Text>
       </View>
-
       <ScrollView
         contentContainerStyle={styles.containerTodo}
         keyboardShouldPersistTaps="handled"
@@ -107,7 +107,6 @@ export default function Todo() {
           ))}
         </View>
       </ScrollView>
-
       <View style={styles.footer}>
         <CustomButton style={styles.deleteTask} onPress={openDeleteModal}>
           <Image style={styles.image} source={binIcon} />
@@ -120,7 +119,7 @@ export default function Todo() {
         </CustomButton>
       </View>
 
-      {/* Modal para Criar Tarefa */}
+      {/* Modal para Excluir Tarefa */}
       <Modal
         visible={modalVisible}
         transparent
@@ -128,30 +127,48 @@ export default function Todo() {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Nova Tarefa</Text>
-            <TextInput
-              placeholder="Título"
-              style={styles.input}
-              value={newTask.title}
-              onChangeText={text => setNewTask({ ...newTask, title: text })}
-            />
-            <TextInput
-              placeholder="Descrição"
-              style={styles.input}
-              value={newTask.description}
-              onChangeText={text =>
-                setNewTask({ ...newTask, description: text })
-              }
-            />
-            <View style={styles.modalButtons}>
-              <Button title="Criar" onPress={handleAddTask} />
-              <Button title="Cancelar" onPress={() => setModalVisible(false)} />
-            </View>
-          </View>
+          <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
+            <ScrollView
+              contentContainerStyle={styles.scrollContainer}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.backgroundModal}>
+                <Text style={styles.modalTitle}>Nova Tarefa</Text>
+                <CustomInput
+                  label="Titulo:"
+                  style={styles.input}
+                  value={newTask.title}
+                  onChangeText={text => setNewTask({ ...newTask, title: text })}
+                />
+                <CustomInput
+                  label="Descrição:"
+                  style={styles.inputDescription}
+                  value={newTask.description}
+                  multiline
+                  numberOfLines={4}
+                  onChangeText={text =>
+                    setNewTask({ ...newTask, description: text })
+                  }
+                />
+                <View style={styles.modalButtons}>
+                  <CustomButton
+                    style={styles.modalButtonCancel}
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Text style={styles.textButton}>Cancelar</Text>
+                  </CustomButton>
+                  <CustomButton
+                    style={styles.modalButtonCreate}
+                    onPress={handleAddTask}
+                  >
+                    <Text style={styles.textButton}>Criar</Text>
+                  </CustomButton>
+                </View>
+              </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
         </View>
       </Modal>
-
       {/* Modal para Excluir Tarefa */}
       <Modal
         visible={deleteModalVisible}
@@ -160,19 +177,30 @@ export default function Todo() {
         onRequestClose={() => setDeleteModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Excluir Tarefas</Text>
+          <View style={styles.backgroundModal}>
+            <Text style={styles.modalTitleDelete}>Excluir Tarefas</Text>
             <Text style={styles.warningText}>
-              Tem certeza que deseja excluir esta(s) tarefa(s), esta ação não
-              poderá ser desfeita. Após clicar em excluir suas tarefas serão
-              completamente excluídas da sua lista.
+              Tem certeza que deseja excluir esta tarefa? Esta ação não poderá
+              ser desfeita.
             </Text>
+            <Text style={styles.warningText}>
+              Após clicar em excluir suas tarefas serão completamente excluídas
+              da sua lista.
+            </Text>
+
             <View style={styles.modalButtons}>
-              <Button title="Excluir" onPress={handleDeleteTasks} />
-              <Button
-                title="Cancelar"
+              <CustomButton
+                style={styles.modalButtonCreate}
                 onPress={() => setDeleteModalVisible(false)}
-              />
+              >
+                <Text style={styles.textButton}>Cancelar</Text>
+              </CustomButton>
+              <CustomButton
+                style={styles.modalButtonCancel}
+                onPress={handleDeleteTasks}
+              >
+                <Text style={styles.textButton}>Excluir</Text>
+              </CustomButton>
             </View>
           </View>
         </View>

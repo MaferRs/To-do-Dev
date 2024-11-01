@@ -8,7 +8,7 @@ interface Props extends TextInputProps {
   value: string;
   type?: string;
   onChangeText: (text: string) => void;
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
 }
 
