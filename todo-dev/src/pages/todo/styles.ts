@@ -1,15 +1,23 @@
 import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
-  // Estilos para o Container Todo
-  containerTodo: {
-    flex: 1,
+  contentTodo: {
     padding: 20,
   },
-
-  contentTodo: {
-    paddingBottom: 20,
+  mainContainer: {
+    flex: 1, // Ocupa toda a tela
+    padding: 20,
   },
-
+  searchInput: {
+    width: 320,
+    height: 45,
+    borderRadius: 10,
+    backgroundColor: '#EDEDED',
+    borderWidth: 1,
+    paddingLeft: 20,
+    marginLeft: 20,
+    marginTop: 10,
+    fontSize: 16,
+  },
   // Estilos para o Cabeçalho
   header: {
     width: '100%',
@@ -18,6 +26,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#ADCEB7',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    marginTop: 30,
   },
   headerText: {
     fontSize: 24,
