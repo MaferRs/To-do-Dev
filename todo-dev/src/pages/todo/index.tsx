@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { styles } from './styles'; // Certifique-se de que você tenha o arquivo de estilos.
+import { styles } from './styles';
 import {
   KeyboardAvoidingView,
   Modal,
@@ -12,7 +12,6 @@ import {
   Platform,
 } from 'react-native';
 import CustomButton from '../../components/button/custom-button';
-
 import binIcon from '../../assets/binIcon.png';
 import addIcon from '../../assets/addIcon.png';
 import CustomInput from '../../components/input/custom-input';
@@ -33,6 +32,7 @@ export default function Todo() {
     description: '',
   });
   const [selectedTaskIds, setSelectedTaskIds] = useState<number[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleAddTask = () => {
     if (newTask.title && newTask.description) {
@@ -64,47 +64,57 @@ export default function Todo() {
     }
   };
 
+  const filteredTasks = tasks.filter(task =>
+    task.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Bem Vinda, Ana F.</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Pesquisar tarefa..."
+          value={searchQuery}
+          onChangeText={text => setSearchQuery(text)}
+        />
       </View>
-      <ScrollView
-        contentContainerStyle={styles.containerTodo}
-        keyboardShouldPersistTaps="handled"
-      >
-        <View style={styles.contentTodo}>
-          {tasks.map(task => (
-            <View key={task.id} style={styles.taskItemContainer}>
-              <TouchableOpacity
-                style={[
-                  styles.taskItem,
-                  selectedTaskIds.includes(task.id) && styles.selectedTaskItem,
-                ]} // Estilo se estiver selecionado
-                onLongPress={() => toggleTaskSelection(task.id)}
-              >
-                <Text style={styles.taskTitle}>{task.title}</Text>
-                <Text style={styles.taskDescription}>{task.description}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.checkbox}
-                onPress={() => toggleTaskSelection(task.id)} // Alterna a seleção ao clicar
-              >
-                <View
+      <ScrollView keyboardShouldPersistTaps="handled">
+        <View style={styles.mainContainer}>
+          <ScrollView keyboardShouldPersistTaps="handled">
+            {filteredTasks.map(task => (
+              <View key={task.id} style={styles.taskItemContainer}>
+                <TouchableOpacity
                   style={[
-                    styles.roundCheckbox,
-                    selectedTaskIds.includes(task.id)
-                      ? styles.checked
-                      : styles.unchecked, // Verifica se o checkbox está selecionado
+                    styles.taskItem,
+                    selectedTaskIds.includes(task.id) &&
+                      styles.selectedTaskItem,
                   ]}
+                  onLongPress={() => toggleTaskSelection(task.id)}
                 >
-                  {selectedTaskIds.includes(task.id) && (
-                    <Text style={styles.checked}>🔴</Text> // Exibe o checkmark se selecionado
-                  )}
-                </View>
-              </TouchableOpacity>
-            </View>
-          ))}
+                  <Text style={styles.taskTitle}>{task.title}</Text>
+                  <Text style={styles.taskDescription}>{task.description}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.checkbox}
+                  onPress={() => toggleTaskSelection(task.id)}
+                >
+                  <View
+                    style={[
+                      styles.roundCheckbox,
+                      selectedTaskIds.includes(task.id)
+                        ? styles.checked
+                        : styles.unchecked,
+                    ]}
+                  >
+                    {selectedTaskIds.includes(task.id) && (
+                      <Text style={styles.checked}>🔴</Text>
+                    )}
+                  </View>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
         </View>
       </ScrollView>
       <View style={styles.footer}>
@@ -118,8 +128,6 @@ export default function Todo() {
           <Image style={styles.image} source={addIcon} />
         </CustomButton>
       </View>
-
-      {/* Modal para Excluir Tarefa */}
       <Modal
         visible={modalVisible}
         transparent
@@ -169,7 +177,6 @@ export default function Todo() {
           </KeyboardAvoidingView>
         </View>
       </Modal>
-      {/* Modal para Excluir Tarefa */}
       <Modal
         visible={deleteModalVisible}
         transparent
