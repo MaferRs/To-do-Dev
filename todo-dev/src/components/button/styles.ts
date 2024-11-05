@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    fontWeight: '800',
   },
   buttonText: {
     color: '#314D3A',

@@ -7,16 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1, // Ocupa toda a tela
     padding: 20,
   },
-  searchInput: {
-    width: 320,
-    height: 45,
-    borderRadius: 10,
-    backgroundColor: '#EDEDED',
-    paddingLeft: 20,
-    marginLeft: 20,
-    marginTop: 10,
-    fontSize: 16,
-  },
+
   // Estilos para o Cabeçalho
   header: {
     width: '100%',
@@ -33,6 +24,23 @@ export const styles = StyleSheet.create({
     color: '#FFF',
     paddingLeft: 20,
   },
+  containerTextHeader: {
+    flexDirection: 'row',
+    gap: 30,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  searchInput: {
+    width: 300,
+    height: 45,
+    borderRadius: 10,
+    backgroundColor: '#EDEDED',
+    paddingLeft: 20,
+    marginLeft: 20,
+
+    fontSize: 16,
+  },
+  logout: {},
 
   // Estilos para o Rodapé
   footer: {
