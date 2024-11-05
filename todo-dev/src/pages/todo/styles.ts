@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     height: 45,
     borderRadius: 10,
     backgroundColor: '#EDEDED',
-    borderWidth: 1,
     paddingLeft: 20,
     marginLeft: 20,
     marginTop: 10,
@@ -26,7 +25,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#ADCEB7',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    marginTop: 30,
+    paddingTop: 40,
   },
   headerText: {
     fontSize: 24,
@@ -81,11 +80,11 @@ export const styles = StyleSheet.create({
   // Estilos dos Itens da Lista de Tarefas
   taskItem: {
     maxWidth: 320,
+    height: 65,
+    padding: 10,
     width: '100%',
-    padding: 15,
     borderColor: '#e0e0e0',
     borderWidth: 2,
-    marginBottom: 10,
     borderRadius: 20,
   },
   taskTitle: {
