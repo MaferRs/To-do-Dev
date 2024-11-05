@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styles } from './styles';
 import {
   KeyboardAvoidingView,
@@ -15,9 +15,17 @@ import CustomButton from '../../components/button/custom-button';
 import binIcon from '../../assets/binIcon.png';
 import addIcon from '../../assets/addIcon.png';
 import CustomInput from '../../components/input/custom-input';
+import { auth, firestore } from '../../firebaseConfig';
+import {
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+} from 'firebase/firestore';
 
 interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
 }
@@ -27,28 +35,53 @@ export default function Todo() {
   const [modalVisible, setModalVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [newTask, setNewTask] = useState<Task>({
-    id: 0,
+    id: '',
     title: '',
     description: '',
   });
-  const [selectedTaskIds, setSelectedTaskIds] = useState<number[]>([]);
+  const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleAddTask = () => {
-    if (newTask.title && newTask.description) {
-      setTasks([...tasks, { ...newTask, id: Date.now() }]);
-      setNewTask({ id: 0, title: '', description: '' });
+  useEffect(() => {
+    const userId = auth.currentUser?.uid; // Obtém o ID do usuário autenticado
+    if (userId) {
+      const unsubscribe = onSnapshot(
+        collection(firestore, `users/${userId}/tasks`),
+        snapshot => {
+          const taskList = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          })) as Task[];
+          setTasks(taskList);
+        }
+      );
+
+      return () => unsubscribe();
+    }
+  }, []);
+
+  const handleAddTask = async () => {
+    const userId = auth.currentUser?.uid; // Obtém o ID do usuário autenticado
+    if (userId && newTask.title && newTask.description) {
+      await addDoc(collection(firestore, `users/${userId}/tasks`), {
+        title: newTask.title,
+        description: newTask.description,
+      });
+      setNewTask({ id: '', title: '', description: '' });
       setModalVisible(false);
     }
   };
 
-  const handleDeleteTasks = () => {
-    setTasks(tasks.filter(task => !selectedTaskIds.includes(task.id)));
+  const handleDeleteTasks = async () => {
+    const deletePromises = selectedTaskIds.map(id =>
+      deleteDoc(doc(firestore, `users/${auth.currentUser?.uid}/tasks`, id))
+    );
+    await Promise.all(deletePromises);
     setSelectedTaskIds([]);
     setDeleteModalVisible(false);
   };
 
-  const toggleTaskSelection = (taskId: number) => {
+  const toggleTaskSelection = (taskId: string) => {
     setSelectedTaskIds(prevSelectedIds =>
       prevSelectedIds.includes(taskId)
         ? prevSelectedIds.filter(id => id !== taskId)
@@ -71,7 +104,7 @@ export default function Todo() {
   return (
     <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Bem Vinda, Ana F.</Text>
+        <Text style={styles.headerText}>Bem Vinda 👋😊.</Text>
         <TextInput
           style={styles.searchInput}
           placeholder="Pesquisar tarefa..."
