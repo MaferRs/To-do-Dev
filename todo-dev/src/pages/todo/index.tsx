@@ -14,6 +14,7 @@ import {
 import CustomButton from '../../components/button/custom-button';
 import binIcon from '../../assets/binIcon.png';
 import addIcon from '../../assets/addIcon.png';
+import logout from '../../assets/logout.png';
 import CustomInput from '../../components/input/custom-input';
 import { auth, firestore } from '../../firebaseConfig';
 import {
@@ -23,6 +24,9 @@ import {
   doc,
   onSnapshot,
 } from 'firebase/firestore';
+import { signOut } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import { LoginScreenNavigationProp } from '../../@types/navigation';
 
 interface Task {
   id: string;
@@ -41,6 +45,8 @@ export default function Todo() {
   });
   const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const navigation = useNavigation<LoginScreenNavigationProp>();
 
   useEffect(() => {
     const userId = auth.currentUser?.uid; // Obtém o ID do usuário autenticado
@@ -101,16 +107,31 @@ export default function Todo() {
     task.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log('Usuário deslogado com sucesso');
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Erro ao deslogar:', error);
+    }
+  };
+
   return (
     <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Bem Vinda 👋😊.</Text>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Pesquisar tarefa..."
-          value={searchQuery}
-          onChangeText={text => setSearchQuery(text)}
-        />
+        <Text style={styles.headerText}>Bem Vinda(o) 👋😊.</Text>
+        <View style={styles.containerTextHeader}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Pesquisar tarefa..."
+            value={searchQuery}
+            onChangeText={text => setSearchQuery(text)}
+          />
+          <CustomButton style={styles.logout} onPress={handleLogout}>
+            <Image source={logout} />
+          </CustomButton>
+        </View>
       </View>
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.mainContainer}>

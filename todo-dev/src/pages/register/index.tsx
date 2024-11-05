@@ -165,7 +165,7 @@ export default function Register() {
 
         <View>
           <CustomButton onPress={handleRegister}>
-            <Text>Criar Conta</Text>
+            <Text style={styles.buttonRegister}>Criar Conta</Text>
           </CustomButton>
         </View>
 

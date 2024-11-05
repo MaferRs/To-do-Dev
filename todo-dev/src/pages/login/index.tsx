@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -114,7 +113,7 @@ export default function Login() {
         </View>
         <View>
           <CustomButton onPress={handleLogin}>
-            <Text>Entrar</Text>
+            <Text style={styles.buttonLogin}>Entrar</Text>
           </CustomButton>
         </View>
         <View style={styles.containerText}>
