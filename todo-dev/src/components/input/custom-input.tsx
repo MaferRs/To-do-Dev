@@ -6,14 +6,16 @@ import { styles } from './styles';
 interface Props extends TextInputProps {
   label?: string;
   value: string;
+  type?: string;
   onChangeText: (text: string) => void;
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
 }
 
 export default function CustomInput({
   label,
   value,
+  type,
   onChangeText,
   placeholder,
   secureTextEntry = false,
@@ -28,6 +30,7 @@ export default function CustomInput({
         onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        keyboardType={type === 'email' ? 'email-address' : 'default'}
         {...props}
       />
     </View>

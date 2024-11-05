@@ -19,7 +19,7 @@ export default function CustomButton({
       onPress={onPress}
       {...props}
     >
-      <Text style={styles.buttonText}>{children}</Text>
+      {children}
     </TouchableOpacity>
   );
 }

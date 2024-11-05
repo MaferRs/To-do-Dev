@@ -4,6 +4,8 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 8,
+    fontWeight: '600',
+    color: '4C4C4C',
   },
   input: {
     width: 350,

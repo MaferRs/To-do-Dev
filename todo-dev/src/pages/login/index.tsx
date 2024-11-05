@@ -55,6 +55,7 @@ export default function Login() {
     // Se ambos os campos são válidos, efetua o login e limpa os campos
     if (valid) {
       Alert.alert('Sucesso', 'Login efetuado');
+      navigation.navigate('Todo');
       setEmail('');
       setPassword('');
     }
@@ -92,7 +93,9 @@ export default function Login() {
           )}
         </View>
         <View>
-          <CustomButton onPress={handleLogin}>Entrar</CustomButton>
+          <CustomButton onPress={handleLogin}>
+            <Text>Entrar</Text>
+          </CustomButton>
         </View>
         <View style={styles.containerText}>
           <Text style={styles.text}>Não tem uma conta?</Text>
