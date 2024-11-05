@@ -86,6 +86,7 @@ export const styles = StyleSheet.create({
     borderColor: '#e0e0e0',
     borderWidth: 2,
     borderRadius: 20,
+    marginBottom: 20,
   },
   taskTitle: {
     fontSize: 16,
