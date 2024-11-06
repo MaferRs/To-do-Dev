@@ -1,4 +1,8 @@
-# To do Dev
+# ToDo Dev
+
+ Documentação do Notion 
+<a href='https://www.notion.so/Projeto-toDoDev-12e59dda1d65809aa70ce73b839a476e?pvs=4'> Acesse aqui! </a>
+
 
 To do Dev é uma aplicação de lista de tarefas (to-do list) desenvolvida em **React Native** com **TypeScript**. Este projeto foi criado como parte de um trabalho extensionista universitário, com o objetivo de aprimorar o aprendizado em desenvolvimento mobile e explorar boas práticas de organização e usabilidade para aplicativos de produtividade.
 
@@ -19,6 +23,33 @@ O To do Dev, em sua versão inicial, oferece as seguintes funcionalidades:
 ### Diferenciais do Projeto
 
 O diferencial do To do Dev está na simplicidade de sua interface e na personalização pensada para o fluxo de trabalho de um desenvolvedor. O projeto foi desenvolvido levando em conta as necessidades específicas de quem trabalha com tecnologia, proporcionando uma ferramenta prática para auxiliar no dia a dia.
+
+
+# Passos para Clonar e Executar o Projeto
+
+Este guia fornece instruções para clonar o repositório e executar o aplicativo em um ambiente local.
+
+### Pré-requisitos
+- **Node.js** e **npm** instalados em sua máquina.
+- **Expo CLI** instalado globalmente (para rodar o projeto com Expo).
+
+### Clonar o Repositório
+Abra o terminal e execute o seguinte comando para clonar o repositório para sua máquina local:
+
+<pre><code>git clone https://github.com/MaferRs/To-do-Dev.git</code></pre>
+
+## Acesse o diretório do projeto e em seguida execute este comando
+
+<pre><code>npm install</code></pre>
+
+## Se ainda não tiver o Expo CLI, instale-o globalmente com o comando:
+
+<pre><code>npm install -g expo-cli</code></pre>
+
+## Iniciar o Projeto com Expo
+Para rodar o aplicativo, execute:
+
+<pre><code>npx expo start</code></pre>
 
 ## Tecnologias Utilizadas
 
