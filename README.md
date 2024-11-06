@@ -16,6 +16,8 @@ O aplicativo é projetado com uma interface **minimalista e intuitiva**, visando
 
 O To do Dev, em sua versão inicial, oferece as seguintes funcionalidades:
 
+- **Fazer cadastro**: Permite que novos usuários se registrem na aplicação para acessar suas funcionalidades.
+- **Fazer login**: Permite que usuários registrados acessem sua conta e visualizem suas tarefas.
 - **Adicionar tarefas**: Permite que o usuário adicione novas atividades de estudo ou desenvolvimento.
 - **Listar tarefas**: Exibe uma lista de todas as tarefas adicionadas, facilitando o acompanhamento das pendências.
 - **Excluir tarefas**: Oferece a opção de remover tarefas concluídas ou que não são mais necessárias.
@@ -55,4 +57,7 @@ Para rodar o aplicativo, execute:
 
 - [React Native](https://reactnative.dev/): Para o desenvolvimento da interface mobile.
 - [TypeScript](https://www.typescriptlang.org/): Adiciona tipagem estática ao JavaScript, proporcionando maior segurança e eficiência no desenvolvimento.
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript): Base para o desenvolvimento da aplicação.
+- [Firebase](https://firebase.google.com/): Para armazenamento de dados (Firestore) e autenticação do usuário.
+- [Figma](https://www.figma.com/): Para criação do design e prototipagem da interface do usuário.
+- [Notion](https://www.notion.so/): Para organização e planejamento das tarefas do projeto.
+- [Styled Components](https://styled-components.com/): Para estilização de componentes no React Native, permitindo escrever CSS no JavaScript.
