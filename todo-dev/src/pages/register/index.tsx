@@ -6,22 +6,18 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
-  Platform,
   TouchableOpacity,
 } from 'react-native';
-import { styles } from './styles';
-
+import { useNavigation } from '@react-navigation/native';
 import imageRegister from '../../assets/register.png';
 import CustomInput from '../../components/input/custom-input';
 import CustomButton from '../../components/button/custom-button';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import {
-  RegisterScreenNavigationProp,
-  RootStackParamList,
-} from '../../@types/navigation';
+import { RegisterScreenNavigationProp } from '../../@types/navigation';
+import { styles } from './styles';
 
-type RegisterScreenProp = StackNavigationProp<RootStackParamList, 'Register'>;
+// Importação do Firebase
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 export default function Register() {
   const navigation = useNavigation<RegisterScreenNavigationProp>();
@@ -50,7 +46,7 @@ export default function Register() {
     return name.trim().length > 0;
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     let valid = true;
 
     // Validação do nome
@@ -85,13 +81,34 @@ export default function Register() {
       setConfirmPasswordError(null);
     }
 
-    //  limpa os campos após efetuar cadastro
+    // Se todos os campos são válidos, cria uma nova conta com Firebase
     if (valid) {
-      Alert.alert('Sucesso', 'Conta criada com sucesso!');
-      setName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+
+        // Atualiza o perfil do usuário com o nome fornecido
+        await updateProfile(user, { displayName: name });
+
+        Alert.alert('Sucesso', 'Conta criada com sucesso!');
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+
+        // Navega para a tela de login após o registro bem-sucedido
+        navigation.navigate('Login');
+      } catch (error: any) {
+        console.error('Erro ao criar conta:', error);
+        Alert.alert(
+          'Erro',
+          'Falha ao criar conta. Verifique suas informações.'
+        );
+      }
     }
   };
 

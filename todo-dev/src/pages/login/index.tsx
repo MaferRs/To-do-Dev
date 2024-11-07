@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import {
   View,
@@ -6,7 +7,6 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
-  Platform,
   TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +16,10 @@ import CustomInput from '../../components/input/custom-input';
 import CustomButton from '../../components/button/custom-button';
 import { LoginScreenNavigationProp } from '../../@types/navigation';
 import { styles } from './styles';
+
+// Importação do Firebase
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 export default function Login() {
   const navigation = useNavigation<LoginScreenNavigationProp>();
@@ -33,7 +37,7 @@ export default function Login() {
     return password.length >= 6;
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     let valid = true;
 
     // Validação de e-mail
@@ -44,20 +48,36 @@ export default function Login() {
       setEmailError(null);
     }
 
-    // Validação de password
+    // Validação de senha
     if (!validatePassword(password)) {
-      setPasswordError('A password deve ter pelo menos 6 caracteres.');
+      setPasswordError('A senha deve ter pelo menos 6 caracteres.');
       valid = false;
     } else {
       setPasswordError(null);
     }
 
-    // Se ambos os campos são válidos, efetua o login e limpa os campos
+    // Se ambos os campos são válidos, tenta efetuar o login
     if (valid) {
-      Alert.alert('Sucesso', 'Login efetuado');
-      navigation.navigate('Todo');
-      setEmail('');
-      setPassword('');
+      try {
+        // Autenticação com Firebase
+        await signInWithEmailAndPassword(auth, email, password);
+        Alert.alert('Sucesso', 'Login efetuado');
+
+        // Navega para a tela de To-do após o login bem-sucedido
+        navigation.navigate('Todo');
+
+        // Limpa os campos
+        setEmail('');
+        setPassword('');
+      } catch (error: any) {
+        console.error('Erro ao fazer login:', error);
+
+        // Exibe uma mensagem de erro
+        Alert.alert(
+          'Erro',
+          'Falha ao efetuar login. Verifique suas credenciais.'
+        );
+      }
     }
   };
 
