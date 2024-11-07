@@ -16,11 +16,9 @@ export const registerUser = async (
       email,
       password
     );
-    console.log('Usuário cadastrado:', userCredential.user);
     return userCredential;
   } catch (error: any) {
     const errorMessage = error.message || 'Erro desconhecido';
-    console.error('Erro ao cadastrar usuário:', errorMessage);
     return null;
   }
 };
@@ -36,11 +34,9 @@ export const loginUser = async (
       email,
       password
     );
-    console.log('Usuário logado:', userCredential.user);
     return userCredential;
   } catch (error: any) {
     const errorMessage = error.message || 'Erro desconhecido';
-    console.error('Erro ao fazer login:', errorMessage);
     return null;
   }
 };

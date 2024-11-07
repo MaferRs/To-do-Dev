@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -70,8 +69,6 @@ export default function Login() {
         setEmail('');
         setPassword('');
       } catch (error: any) {
-        console.error('Erro ao fazer login:', error);
-
         // Exibe uma mensagem de erro
         Alert.alert(
           'Erro',
@@ -114,7 +111,7 @@ export default function Login() {
         </View>
         <View>
           <CustomButton onPress={handleLogin}>
-            <Text>Entrar</Text>
+            <Text style={styles.buttonLogin}>Entrar</Text>
           </CustomButton>
         </View>
         <View style={styles.containerText}>

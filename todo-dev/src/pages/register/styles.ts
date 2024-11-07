@@ -47,8 +47,8 @@ export const styles = StyleSheet.create({
   },
   buttonNavigate: {
     textDecorationLine: 'underline',
-    color: '#314D3A',
-    fontWeight: '600',
+    fontWeight: '800',
     fontSize: 16,
   },
+  buttonRegister: { fontWeight: '800', fontSize: 18 },
 });

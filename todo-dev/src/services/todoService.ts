@@ -18,10 +18,7 @@ export const addTask = async (userId: string, task: string) => {
       completed: false,
       createdAt: new Date(),
     });
-    console.log('Tarefa adicionada com sucesso!');
-  } catch (error) {
-    console.error('Erro ao adicionar tarefa:', error);
-  }
+  } catch (error) {}
 };
 
 // Função para buscar as tarefas de um usuário
@@ -32,7 +29,6 @@ export const getUserTasks = async (userId: string): Promise<DocumentData[]> => {
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => doc.data());
   } catch (error) {
-    console.error('Erro ao buscar tarefas:', error);
     return [];
   }
 };
