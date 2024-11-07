@@ -110,11 +110,8 @@ export default function Todo() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      console.log('Usuário deslogado com sucesso');
       navigation.navigate('Login');
-    } catch (error) {
-      console.error('Erro ao deslogar:', error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -135,40 +132,48 @@ export default function Todo() {
       </View>
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.mainContainer}>
-          <ScrollView keyboardShouldPersistTaps="handled">
-            {filteredTasks.map(task => (
-              <View key={task.id} style={styles.taskItemContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.taskItem,
-                    selectedTaskIds.includes(task.id) &&
-                      styles.selectedTaskItem,
-                  ]}
-                  onLongPress={() => toggleTaskSelection(task.id)}
-                >
-                  <Text style={styles.taskTitle}>{task.title}</Text>
-                  <Text style={styles.taskDescription}>{task.description}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.checkbox}
-                  onPress={() => toggleTaskSelection(task.id)}
-                >
-                  <View
+          {filteredTasks.length == 0 ? (
+            // Renderiza a mensagem caso não haja tarefas
+            <Text style={styles.noTasksText}>Nenhuma tarefa no momento</Text>
+          ) : (
+            // Renderiza a lista de tarefas normalmente
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {filteredTasks.map(task => (
+                <View key={task.id} style={styles.taskItemContainer}>
+                  <TouchableOpacity
                     style={[
-                      styles.roundCheckbox,
-                      selectedTaskIds.includes(task.id)
-                        ? styles.checked
-                        : styles.unchecked,
+                      styles.taskItem,
+                      selectedTaskIds.includes(task.id) &&
+                        styles.selectedTaskItem,
                     ]}
+                    onLongPress={() => toggleTaskSelection(task.id)}
                   >
-                    {selectedTaskIds.includes(task.id) && (
-                      <Text style={styles.checked}>🔴</Text>
-                    )}
-                  </View>
-                </TouchableOpacity>
-              </View>
-            ))}
-          </ScrollView>
+                    <Text style={styles.taskTitle}>{task.title}</Text>
+                    <Text style={styles.taskDescription}>
+                      {task.description}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.checkbox}
+                    onPress={() => toggleTaskSelection(task.id)}
+                  >
+                    <View
+                      style={[
+                        styles.roundCheckbox,
+                        selectedTaskIds.includes(task.id)
+                          ? styles.checked
+                          : styles.unchecked,
+                      ]}
+                    >
+                      {selectedTaskIds.includes(task.id) && (
+                        <Text style={styles.checked}>🔴</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </ScrollView>
+          )}
         </View>
       </ScrollView>
       <View style={styles.footer}>

@@ -215,4 +215,11 @@ export const styles = StyleSheet.create({
   },
   roundCheckbox: {},
   checkedCheckbox: {},
+  noTasksText: {
+    fontSize: 20,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#6A6A6A',
+  },
 });
