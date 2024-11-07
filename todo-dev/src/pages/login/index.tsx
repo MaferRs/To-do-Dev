@@ -69,8 +69,6 @@ export default function Login() {
         setEmail('');
         setPassword('');
       } catch (error: any) {
-        console.error('Erro ao fazer login:', error);
-
         // Exibe uma mensagem de erro
         Alert.alert(
           'Erro',

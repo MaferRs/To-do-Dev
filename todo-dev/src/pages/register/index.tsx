@@ -103,7 +103,6 @@ export default function Register() {
         // Navega para a tela de login após o registro bem-sucedido
         navigation.navigate('Login');
       } catch (error: any) {
-        console.error('Erro ao criar conta:', error);
         Alert.alert(
           'Erro',
           'Falha ao criar conta. Verifique suas informações.'
