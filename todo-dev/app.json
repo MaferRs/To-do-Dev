@@ -2,12 +2,12 @@
   "expo": {
     "name": "todo-dev",
     "slug": "todo-dev",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/todo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/todo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/todo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.toDo.dev.",
+      "buildType": "apk", // Garante que o build gerado será APK
+      "googleServicesFile": "./src/google-services.json"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/todo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09f50ab5-03ba-40bc-961b-353622467b3a"
+      }
     }
   }
 }

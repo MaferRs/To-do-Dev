@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 12.6.2",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk", // Garante que o build será do tipo APK
+        "gradleCommand": ":app:assembleRelease" // Comando do Gradle para gerar o APK de release
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
