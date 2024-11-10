@@ -18,7 +18,7 @@ import { styles } from './styles';
 
 // Importação do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 
 export default function Login() {
   const navigation = useNavigation<LoginScreenNavigationProp>();

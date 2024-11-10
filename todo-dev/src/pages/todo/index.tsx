@@ -9,14 +9,13 @@ import {
   View,
   Text,
   Image,
-  Platform,
 } from 'react-native';
 import CustomButton from '../../components/button/custom-button';
 import binIcon from '../../assets/binIcon.png';
 import addIcon from '../../assets/addIcon.png';
 import logout from '../../assets/logout.png';
 import CustomInput from '../../components/input/custom-input';
-import { auth, firestore } from '../../firebaseConfig';
+import { auth, firestore } from '../../../firebaseConfig';
 import {
   collection,
   addDoc,

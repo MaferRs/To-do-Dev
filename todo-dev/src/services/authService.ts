@@ -1,4 +1,4 @@
-import { auth } from '../firebaseConfig';
+import { auth } from '../../firebaseConfig';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -36,7 +36,6 @@ export const loginUser = async (
     );
     return userCredential;
   } catch (error: any) {
-    const errorMessage = error.message || 'Erro desconhecido';
     return null;
   }
 };

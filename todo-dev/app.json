@@ -4,10 +4,10 @@
     "slug": "todo-dev",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/inicial.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/inicial.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/inicial.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.toDo.dev"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/inicial.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09f50ab5-03ba-40bc-961b-353622467b3a"
+      }
     }
   }
 }

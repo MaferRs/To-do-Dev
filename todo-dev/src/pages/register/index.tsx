@@ -17,7 +17,7 @@ import { styles } from './styles';
 
 // Importação do Firebase
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 
 export default function Register() {
   const navigation = useNavigation<RegisterScreenNavigationProp>();
