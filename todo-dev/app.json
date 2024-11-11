@@ -19,7 +19,8 @@
         "foregroundImage": "./src/assets/inicial.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.toDo.dev"
+      "package": "com.toDo.dev",
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
     },
     "web": {
       "favicon": "./src/assets/inicial.png"
