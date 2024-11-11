@@ -1,7 +1,9 @@
 # ToDo Dev
 
- Documentação do Notion 
-<a href='https://www.notion.so/Projeto-toDoDev-12e59dda1d65809aa70ce73b839a476e?pvs=4'> Acesse aqui! </a>
+##  Documentação do Notion 
+[🚀 **Acesse aqui!** 🌐](https://www.notion.so/Projeto-toDoDev-12e59dda1d65809aa70ce73b839a476e?pvs=4)
+
+
 
 
 To do Dev é uma aplicação de lista de tarefas (to-do list) desenvolvida em **React Native** com **TypeScript**. Este projeto foi criado como parte de um trabalho extensionista universitário, com o objetivo de aprimorar o aprendizado em desenvolvimento mobile e explorar boas práticas de organização e usabilidade para aplicativos de produtividade.
