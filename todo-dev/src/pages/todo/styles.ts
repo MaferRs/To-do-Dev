@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 120,
     position: 'relative',
+    top: 50,
   },
   createTask: {
     width: 75,
